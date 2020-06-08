@@ -71,6 +71,46 @@ Check Splash `install docs`_ for more info.
    If you use other cache storage then it is necesary to subclass it and
    replace all ``scrapy.util.request.request_fingerprint`` calls with
    ``scrapy_splash.splash_request_fingerprint``.
+## Element Selection
+
+Car Selling Website
+
+
+![Image of Website](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_1.jpg)
+
+Select Year Filter
+
+
+![Image of YearFilter](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_2.jpg)
+
+Select Make Filter
+
+
+![Image of MakeFilter](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_3.jpg)
+
+Click Next Page URL
+
+
+![Image of NextPage](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_4.jpg)
+
+Car Details Link
+
+
+![Image of CarDetailsLink](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_5.jpg)
+
+Select Price And Title
+
+
+![Image of Title](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_6.jpg)
+
+Select Vin,Stock,ModelNumber,Body,ExtColorGeneric,IntColor,EngDescription,TransDescription,DriveTrain,DealerName
+
+
+![Image of Website](https://github.com/Aniruddhsinh03/splashWithJavaScriptWebsiteLuaScript/blob/master/screenshot/car_7.jpg)
+
+
+
+
 
 ## Extracted data
 
