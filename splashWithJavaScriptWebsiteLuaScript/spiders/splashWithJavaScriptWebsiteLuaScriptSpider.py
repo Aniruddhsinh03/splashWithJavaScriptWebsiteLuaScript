@@ -10,6 +10,7 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
     start_urls = ['http://www.baierl.com/new-inventory/']
 
     def start_requests(self):
+        # script for action filters
         filters_script = """function main(splash)
                                 assert(splash:go(splash.args.url))
                                 splash:wait(5)
@@ -30,9 +31,9 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                                 splash:mouse_click(year_drop_dimensions.x, year_drop_dimensions.y)
                                 splash:wait(1.5)
 
-                                -- -- Clicks the 202X year
+                                -- -- Clicks the 2021 year
                                 local year_dimensions = get_element_dim_by_xpath(
-                                    '//li[contains(@data-value, "2020")]/span')
+                                    '//li[contains(@data-value, "2021")]/span')
                                 splash:set_viewport_full()
                                 splash:mouse_click(year_dimensions.x, year_dimensions.y)
                                 splash:wait(5)
@@ -44,16 +45,16 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                                 splash:mouse_click(make_drop_dimensions.x, make_drop_dimensions.y)
                                 splash:wait(1.5)
 
-                                -- Clicks the Toyota make
+                                -- Clicks the Chevrolet make
                                 local make_dimensions = get_element_dim_by_xpath(
-                                    '//li[contains(@data-filters, "make_toyota")]/span')
+                                    '//li[contains(@data-filters, "make_chevrolet")]/span')
                                 splash:set_viewport_full()
                                 splash:mouse_click(make_dimensions.x, make_dimensions.y)
                                 splash:wait(5)
 
                                 return splash:html()
                             end"""
-
+        # extract urls from webpage
         for url in self.start_urls:
             yield SplashRequest(url=url,
                                 callback=self.parse,
@@ -61,7 +62,9 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                                 args={'lua_source': filters_script})
 
     def parse(self, response):
+        # extract hyperlink with title
         cars_urls = response.xpath('//*[@class="title"]/a/@href').extract()
+        # extract urls from one page
         for car_url in cars_urls:
             absolute_car_url = response.urljoin(car_url)
             yield Request(absolute_car_url,
@@ -87,9 +90,9 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                                 splash:mouse_click(year_drop_dimensions.x, year_drop_dimensions.y)
                                 splash:wait(1.5)
 
-                                -- -- Clicks the 202X year
+                                -- -- Clicks the 2021 year
                                 local year_dimensions = get_element_dim_by_xpath(
-                                    '//li[contains(@data-value, "2020")]/span')
+                                    '//li[contains(@data-value, "2021")]/span')
                                 splash:set_viewport_full()
                                 splash:mouse_click(year_dimensions.x, year_dimensions.y)
                                 splash:wait(5)
@@ -101,9 +104,9 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                                 splash:mouse_click(make_drop_dimensions.x, make_drop_dimensions.y)
                                 splash:wait(1.5)
 
-                                -- Clicks the Toyota make
+                                -- Clicks the Chevrolet make
                                 local make_dimensions = get_element_dim_by_xpath(
-                                    '//li[contains(@data-filters, "make_toyota")]/span')
+                                    '//li[contains(@data-filters, "make_chevrolet")]/span')
                                 splash:set_viewport_full()
                                 splash:mouse_click(make_dimensions.x, make_dimensions.y)
                                 splash:wait(5)
@@ -130,6 +133,7 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                                 }
                             end"""
 
+        # checking present url and according url perform actions
         script = None
         if response.url is not self.start_urls[0]:
             script = script_at_page_2
@@ -142,10 +146,29 @@ class SplashwithjavascriptwebsiteluascriptspiderSpider(scrapy.Spider):
                             args={'lua_source': script})
 
     def parse_car(self, response):
+        # extract car details
         name = ''.join(response.xpath('//h1//text()').extract())
         price = response.xpath('//*[@class="finalPrice"]/span/text()').extract_first()
+        vin = response.xpath('//li[@class="vin"]/span[@class="value"]/text()').extract_first()
         stock = response.xpath('//li[@class="stock"]/span[@class="value"]/text()').extract_first()
+        modelnumber = response.xpath('//li[@class="modelnumber"]/span[@class="value"]/text()').extract_first()
+        body = response.xpath('//li[@class="body"]/span[@class="value"]/text()').extract_first()
+        extcolorgeneric = response.xpath('//li[@class="extcolorgeneric"]/span[@class="value"]/text()').extract_first()
+        intcolor = response.xpath('//li[@class="intcolor"]/span[@class="value"]/text()').extract_first()
+        engdescription = response.xpath('//li[@class="engdescription"]/span[@class="value"]/text()').extract_first()
+        transdescription = response.xpath('//li[@class="transdescription"]/span[@class="value"]/text()').extract_first()
+        drivetrain = response.xpath('//li[@class="drivetrain"]/span[@class="value"]/text()').extract_first()
+        dealername = response.xpath('//li[@class="dealername"]/span[@class="value"]/text()').extract_first()
 
         yield {'name': name,
                'price': price,
-               'stock': stock}
+               'stock': stock,
+               'vin': vin,
+               'modelnumber': modelnumber,
+               'body': body,
+               'extcolorgeneric': extcolorgeneric,
+               'intcolor': intcolor,
+               'engdescription': engdescription,
+               'transdescription': transdescription,
+               'drivetrain': drivetrain,
+               'dealername': dealername}
