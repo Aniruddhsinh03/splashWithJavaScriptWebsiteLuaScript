@@ -74,7 +74,7 @@ Check Splash `install docs`_ for more info.
 
 ## Extracted data
 
-This project extracts quotes, combined with the respective author names and tags.
+This project extracts car details.
 The extracted data looks like this sample:
 
           {
@@ -99,7 +99,7 @@ This project contains two spiders and you can list them using the `list`
 command:
 
     $ scrapy list
-    quotesSpider
+    splashWithJavaScriptWebsiteLuaScriptSpider
 
 Spider extract the data from quotes page and visit author hyperlink and extract auther infomation also.
 
@@ -110,8 +110,8 @@ Spider extract the data from quotes page and visit author hyperlink and extract 
 
 You can run a spider using the `scrapy crawl` command, such as:
 
-    $ scrapy crawl quotesSpider
+    $ scrapy crawl splashWithJavaScriptWebsiteLuaScriptSpider
 
 If you want to save the scraped data to a file, you can pass the `-o` option:
     
-    $ scrapy crawl quotesSpider -o output.json
+    $ scrapy crawl splashWithJavaScriptWebsiteLuaScriptSpider -o output.json
