@@ -1,6 +1,6 @@
 # splashWithJavaScriptWebsiteLuaScript
 
-This is a Scrapy project to scrape quotes and author information from  http://quotes.toscrape.com.
+This is a Scrapy Splash project to scrape car information from  http://www.baierl.com/new-inventory/.
 
 This project is only meant for educational purposes.
 
@@ -77,13 +77,20 @@ Check Splash `install docs`_ for more info.
 This project extracts quotes, combined with the respective author names and tags.
 The extracted data looks like this sample:
 
-    {
-        'Author': 'Douglas Adams',
-        'Comment': '“I may not have gone where I intended to go, but I think I ...”',
-        'Tags': ['life', 'navigation'],
-        'Author Born Location': 'in Atlanta, Georgia, The United States', 
-        'Author Description': "Martin Luther King, Jr. was one of the pivotal leaders of the American civil rights movement. King was a'
-    }
+          {
+           "name": "2021 Chevrolet Trailblazer RS",
+           "price": " $28,530",
+           "stock": "MB005347",
+           "vin": "KL79MTSL1MB005347",
+           "modelnumber": "1TT56",
+           "body": "Sport Utility",
+           "extcolorgeneric": "Black",
+           "intcolor": "Jet Black with Red accents",
+           "engdescription": "Gas I3 1.3L/",
+           "transdescription": "1-Speed Automatic",
+           "drivetrain": "FWD",
+           "dealername": "Baierl Chevrolet"
+         }
 
 
 ## Spiders
