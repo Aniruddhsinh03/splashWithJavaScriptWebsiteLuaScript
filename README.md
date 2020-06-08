@@ -95,7 +95,7 @@ The extracted data looks like this sample:
 
 ## Spiders
 
-This project contains two spiders and you can list them using the `list`
+This project contains one spider and you can list them using the `list`
 command:
 
     $ scrapy list
